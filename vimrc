@@ -23,6 +23,14 @@ runtime! plugin/sensible.vim
 set encoding=utf-8 fileencodings=
 syntax on
 
+" INDENT AND TABS
+
+set autoindent
+set smartindent
+set expandtab
+set smarttab
+set shiftwidth=4
+
 set number
 set cc=80
 
