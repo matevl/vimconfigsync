@@ -12,6 +12,12 @@ Plugin 'VundleVim/Vundle.vim'
 " https://github.com/tpope/vim-sensible
 Plugin 'tpope/vim-sensible'
 
+" NERDTree - File system explorer
+Plugin 'preservim/nerdtree'
+
+" GitGutter - Shows git diff in the gutter
+Plugin 'airblade/vim-gitgutter'
+
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
@@ -30,7 +36,6 @@ set smartindent
 set expandtab
 set smarttab
 set shiftwidth=4
-
 set number
 set cc=80
 
@@ -46,3 +51,20 @@ let git_settings = system("git config --get vim.settings")
 if strlen(git_settings)
 	exe "set" git_settings
 endif
+
+" PLUGIN CONFIGURATION
+
+" NERDTree: Start automatically when opening a directory
+autocmd VimEnter *
+            \ if argc() == 1
+            \   && isdirectory(argv()[0])
+            \ | execute 'NERDTree' argv()[0]
+            \ | wincmd p
+            \ | enew
+            \ | execute 'cd '.argv()[0]
+            \ | endif
+
+" Toggle NERDTree with Ctrl + n
+nnoremap <C-n> :NERDTreeToggle<CR>
+
+" GitGutter: No additional configuration needed for basic usage
